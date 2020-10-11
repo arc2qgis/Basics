@@ -1,0 +1,132 @@
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Table Operations</title>
+		<link rel="stylesheet" type="text/css" href="../css/base_styles.css">
+	</head>
+	<body>
+            <header></header>
+    <div class="sidenav">
+        <ul>
+            <li><a href="..">Home</a></li>
+            <li><a href="../Basics/basics.html" class="active">Basic GIS Operations</a></li>
+            <li><a href="../Analysis/analysis.html">Analysis Toolbox</a></li>
+            <li><a href="../Conversion/conversion.html">Conversion Toolbox</a></li>
+            <li><a href="../Data Management/data_management.html">Data Management Toolbox</a></li>
+            <li><a href="../Geocoding/geocoding.html">Geocoding Toolbox</a></li>
+            <li><a href="../Network Analyst/network_analyst.html">Network Analyst Toolbox</a></li>
+            <li><a href="../Spatial Analyst/spatial_analyst.html">Spatial Analyst Toolbox</a></li>
+            <li><a href="../Spatial Statistics/spatial_statistics.html">Spatial Statistics Toolbox</a></li>
+          </ul>
+        </div>
+    <div class="content">
+        <h1>Working with the Attributes Table</h1>
+        <p>This page should teach you to do basic table operations in QGIS, 
+            meaning how to open the Attributes Table, how to add and remove columns and using all the other tools available inside the table viewer in QGIS.</p>
+            <br>
+        <ul id ="top">
+            <li><a href="#open">Open The Attributes Table</a></li>
+            <li><a href="#add">Add Columns</a></li>
+            <li><a href="#remove">Remove Columns</a></li>
+            <li><a href="#other">Adittional operations</a></li>
+        </ul>
+        <a href="../Basics/basics.html">Back To Basic Concepts</a><br>
+        <a href="..">Back To Homepage</a><br>
+        <h2 id="open">How To Open The Attributes Table</h2>
+            <p>You have three easy ways to open the Attributes Table:
+                <ol>
+                    <li>Right click the layer you want to open, and select <b>Open Attribute Table</b>.<br>
+                    </br><img src="img/tables_db0.png" height=460px width=270px/></br>
+                    </li>
+                    <li>In the toolbar under the menus click on the table <img src="img/tables_db2.png" title="Open Attribute Table" height=25px width=25px/> icon and the attribute table of the current working layer will open.<br>
+                    </br><img src="img/tables_db1.png" height=50px width=860px/></br>
+                    </li><br>
+                    <li>Select a working table and press <kbd>F6</kbd>, thats it.
+                    </li>
+                </ol>
+            </p>
+        </br><a href="#top">Go back to the top</a><br>
+        <h2 id="add">Adding a New Column</h2>
+        <p>
+            To add a new column to your layer you should first enable editing on the layer. <br>
+            to do this click on the left-most button of the toolbar which looks like a pencil <img src="img/tables_db4.png" title="Toggel editing mode" height=25px width=25px/> and is located here:<br>
+            </br><img src="img/tables_db3.png" height=40px width=560px/></br><br>
+            Now that the layer is editable, you can either click the New Field (<kbd>Ctrl</kbd>+<kbd>W</kbd>) button <img src="img/tables_add_db0.png"  height=25px width=25px/> which is located here:<br>
+            </br><img src="img/tables_db5.png" height=40px width=560px/></br><br>
+            This will add an empty field.<br>
+            Or the Field Calculator button (<kbd>Ctrl</kbd>+<kbd>I</kbd>) <img src="img/tables_calc_db0.png"  height=25px width=25px/> which is located here:<br>
+            </br><img src="img/tables_db6.png" height=40px width=560px/></br><br>
+            If you chose to add an empty field, all you have to do now is select the name, type of field you want, its length, 
+            which can limit you in the future, so try to pick a length which you know should cover all possible data. If you are choosing to use a Decimal Number,
+             make sure you specify the number of digits to appear after the decimal point in the percision box, this will count as part of the length you specify. <br>
+            </br><img src="img/tables_add_db1.png" height=235px width=265px/></br><br>
+            If you chose to calculate a New field, you will face this window:<br>
+            </br><img src="img/tables_calc_db1.png" height=660px width=690px/></br><br>
+            Here you will first have to choose wether to create a new field or update an existing one.
+            Assuming we are adding a new field, here too you will need to enter a field name, type and length.
+            now you can either keep the formula blank or use one of the values on the side, for example a calculation of the row number times 2, which i performed by clicking on the row number in the options and typing "* 2"<br>
+            </br><img src="img/tables_calc_db2.png" height=700px width=790px/></br><br>
+            Another formula which might be useful for you is getting the "WKT" or Well Known Text description of your geometry.
+            This can be used like a GeoJSON geometry object or for calculations with Spatial SQL (PostGIS will read this as geometry).<br>
+            The formula is <pre><code>geom_to_wkt(  $geometry )</code></pre> when <b>geom_to_wkt</b> is the function that transforms the geometry data (<i>$geometry</i>) into well known (and readable) text.<br>
+            </br><img src="img/tables_calc_db3.png" height=660px width=690px/></br><br>
+            And thats it, Simple and easy to use, and now you know how to do that in Open Source.</br>
+        </p>
+        </br><a href="#top">Go back to the top</a><br>
+        <h2 id="remove">Removing Columns</h2>
+        <p>
+            To remove a field from your table you also have to get into editing mode for that layer.<br>
+            to do this click on the left-most button of the toolbar which looks like a pencil <img src="img/tables_db4.png" title="Open Attribute Table" height=25px width=25px/> and is located here:<br>
+            </br><img src="img/tables_db3.png" height=40px width=560px/></br><br>
+            Now that the layer is editable, you can click the <img src="img/tables_remove_db1.png"  height=25px width=25px/> Delete Field button or just enter <kbd>Ctrl</kbd>+<kbd>L</kbd>. <br>
+            </br><img src="img/tables_remove_db0.png" height=40px width=560px/></br><br>
+            You will now have this window pop up.<br>
+            </br><img src="img/tables_remove_db2.png" height=335px width=470px/></br><br>
+            To select a field to remove simply click on its name. If you want to select multiple fields simply click them too, no need to hold <kbd>Shift</kbd> or <kbd>Ctrl</kbd>.
+            If you want to De-Selct a field, simply click it again.<br>
+            Once you are done, click <kbd class="qgisbtn">OK</kbd>.<br>
+            And thats it, Simple and easy to use, and now you know how to do that in Open Source.</br>
+        </p>
+        </br><a href="#top">Go back to the top</a><br>
+        <h2 id="remove">Adittional Operations</h2>
+        <p>
+            Naturally there are other operations available on the attributes table, this will be a quick review of the available vuttons and their purpose and uses.<br>
+            A Detailed version of this list can be found in the official QGIS Documentation <a href="https://docs.qgis.org/2.18/en/docs/user_manual/working_with_vector/attribute_table.html#introducing-the-attribute-table-interface">Here</a>, it is however only updated to version 2.18, though little should have changed.
+            The buttons below are listed by toolbar and from left to right or top to bottom, depending on the toolbar.<br>
+            <ul>
+                <li>Top Toolbar:<ol>
+                    <li>Toggle editing mode <img src="img/tables_db4.png" title="Toggel editing mode" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>E</kbd>)</li>
+                    <li>Toggle multi edit mode <img src="img/tables_button_db0.PNG" height=25px width=25px/></li>
+                    <li>Save Edits <img src="img/tables_button_db1.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>S</kbd>)</li>
+                    <li>Reload the table <img src="img/tables_button_db2.PNG" height=25px width=25px/></li>
+                    <li>Add feature <img src="img/tables_button_db3.PNG" height=25px width=25px/> (Add new geometryless feature)</li>
+                    <li>Delete selected features <img src="img/tables_button_db4.PNG" height=25px width=25px/></li>
+                    <li>Cut selected rows to clipboard <img src="img/tables_button_db5.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>X</kbd>)</li>
+                    <li>Copy selected rows to clipboard <img src="img/tables_button_db6.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>C</kbd>)</li>
+                    <li>Paste features from clipboard <img src="img/tables_button_db7.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>V</kbd>)</li>
+                    <li>Select features using an Expression <img src="img/tables_button_db8.PNG" height=25px width=25px/></li>
+                    <li>Select All <img src="img/tables_button_db9.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>A</kbd>)</li>
+                    <li>Invert selection <img src="img/tables_button_db10.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>R</kbd>)</li>
+                    <li>Deselect all <img src="img/tables_button_db11.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd>)</li>
+                    <li>Filter/Select features using form <img src="img/tables_button_db12.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>F</kbd>)</li>
+                    <li>Move selected to top <img src="img/tables_button_db13.PNG" height=25px width=25px/></li>
+                    <li>Pan map to the selected rows <img src="img/tables_button_db14.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>P</kbd>)</li>
+                    <li>Zoom map to the selected rows <img src="img/tables_button_db15.PNG" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>J</kbd>)</li>
+                    <li>New field <img src="img/tables_add_db0.png" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>W</kbd>)</li>
+                    <li>Delete field <img src="img/tables_remove_db1.png" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>L</kbd>)</li>
+                    <li>Open field calculator <img src="img/tables_calc_db0.png" height=25px width=25px/> (<kbd>Ctrl</kbd>+<kbd>I</kbd>)</li>
+                    <li>Conditional formatting <img src="img/tables_button_db16.PNG" height=25px width=25px/></li>
+                    <li>Dock Attribute Table <img src="img/tables_button_db17.PNG" height=25px width=25px/></li>
+                    <li>Actions <img src="img/tables_button_db18.PNG" height=25px width=25px/> (more about actions can be found <a href="https://docs.qgis.org/2.18/en/docs/training_manual/create_vector_data/actions.html?highlight=actions">here</a>)</li>
+                </ol></li>
+                <li>Bottom Left Tools:<ol>
+                    <li></li>
+                </ol></li>
+                <li>Bottom Right Tools:<ol>
+
+                </ol></li>
+            </ul>
+        </p>
+        </div>
+    </body>
+</html>
